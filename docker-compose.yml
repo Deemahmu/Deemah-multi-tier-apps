@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: deemah_postgresC
+    environment:
+      POSTGRES_USER: deemah
+      POSTGRES_PASSWORD: dm1234
+      POSTGRES_DB: deemah_db
+    volumes:
+      - my_postgres_data:/var/lib/postgresql/data
+    networks:
+      - deemah_net
+    ports:
+      - "5432:5432"
+
+  go-backend:
+    image: go-backend
+    container_name: go-backend
+    environment:
+      POSTGRES_USER: deemah
+      POSTGRES_PASSWORD: dm1234
+      POSTGRES_DB: deemah_db
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+    networks:
+      - deemah_net
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+
+  frontend:
+    image: html-frontend
+    container_name: html-frontend
+    networks:
+      - deemah_net
+    ports:
+      - "80:80"
+
+networks:
+  deemah_net:
+    driver: bridge
+
+volumes:
+  my_postgres_data:
+
