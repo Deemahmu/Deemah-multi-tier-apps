@@ -3,7 +3,7 @@ version: '3.8'
 services:
   postgres:
     image: postgres:latest
-    container_name: deemah_postgresC
+    container_name: deemah_postgresc
     environment:
       POSTGRES_USER: deemah
       POSTGRES_PASSWORD: dm1234
