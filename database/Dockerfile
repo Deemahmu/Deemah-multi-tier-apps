@@ -6,6 +6,7 @@ FROM postgres:latest
 ENV POSTGRES_USER=deemah
 ENV POSTGRES_PASSWORD=dm1234
 ENV POSTGRES_DB=deemah_db
+ENV POSTGRES_HOST=dalmubarak-db-service
 
 # Mount a volume for persistent data storage
 VOLUME /var/lib/postgresql/data
